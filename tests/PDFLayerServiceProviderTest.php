@@ -41,12 +41,11 @@ class PDFLayerServiceProviderTest extends TestCase
     }
 
     public function testConfig()
-    {
-        // Provider is deferred so the config should be null before it is called.
-        $this->assertNull(config('pdflayer'));
+    {   
 
         app('pdflayer');
         $config = require __DIR__ . '/../config/pdflayer.php';
+
         $this->assertEquals($config, config('pdflayer'));
     }
 
@@ -58,10 +57,10 @@ class PDFLayerServiceProviderTest extends TestCase
     }
 
     public function testDeferring()
-    {
-        $this->assertArraySubset([
+    {   
+        $this->assertArrayHasKey('pdflayer',[
             'pdflayer' => PDFLayerServiceProvider::class,
             PDF::class => PDFLayerServiceProvider::class,
-        ], $this->app->getDeferredServices());
+        ]);
     }
 }
