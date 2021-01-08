@@ -38,7 +38,7 @@ class PDFTest extends TestCase
         return $app;
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->app['config']->set('pdflayer.access_key', 'testAccessKey');
